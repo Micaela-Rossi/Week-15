@@ -15,6 +15,11 @@ describe ("Complete flow for standard user, log in, add items to cart, delete it
         await login.loginProcess(username, password);
     });
 
+    it("verify the images for each item are different.", async () => {
+        const uniqueSrcArray = [...new Set(await inventory.srcImgsArray())];
+        expect(uniqueSrcArray.length).toEqual(6);
+    });
+
     it("add items to cart.", async () => {
         let cartCount = 1;
 

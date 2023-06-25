@@ -3,6 +3,30 @@ class Inventory {
         return $("#inventory_container");
     };
 
+    get firstImg() {
+        return $("#item_0_img_link > img");
+    };
+
+    get secondImg() {
+        return $("#item_1_img_link > img");
+    };
+
+    get thirdImg() {
+        return $("#item_2_img_link > img");
+    };
+
+    get fourthImg() {
+        return $("#item_3_img_link > img");
+    };
+
+    get fifthImg() {
+        return $("#item_4_img_link > img");
+    };
+
+    get sixthImg() {
+        return $("#item_5_img_link > img");
+    };
+
     get btnAddCartBackpack() {
         return $("#add-to-cart-sauce-labs-backpack");
     };
@@ -54,6 +78,17 @@ class Inventory {
     get shoppingCartBtn() {
         return $("#shopping_cart_container > a");
     };
+
+    async srcImgsArray() {
+        const srcImgsArray = [];
+        srcImgsArray.push(await this.firstImg.getAttribute("src"));
+        srcImgsArray.push(await this.secondImg.getAttribute("src"));
+        srcImgsArray.push(await this.thirdImg.getAttribute("src"));
+        srcImgsArray.push(await this.fourthImg.getAttribute("src"));
+        srcImgsArray.push(await this.fifthImg.getAttribute("src"));
+        srcImgsArray.push(await this.sixthImg.getAttribute("src"));
+        return srcImgsArray;
+    }
 
     async addCartBackpackClick() {
         await this.btnAddCartBackpack.click();

@@ -27,9 +27,9 @@ exports.config = {
     ],
     // Patterns to exclude.
     exclude: [
-        './test/specs/glitchUsere2e.js',
-        './test/specs/lockedUsere2e.js',
-        './test/specs/problemUsere2e.js',
+        //'./test/specs/glitchUsere2e.js',
+        //'./test/specs/lockedUsere2e.js',
+        //'./test/specs/problemUsere2e.js',
         //'./test/specs/standardUsere2e.js',
     ],
     //
