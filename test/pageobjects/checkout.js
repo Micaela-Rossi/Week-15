@@ -1,4 +1,4 @@
-class checkout {
+class Checkout {
     get firstNameInput() {
         return $("#first-name");
     };
@@ -27,18 +27,6 @@ class checkout {
         return $("#back-to-products");
     };
 
-    async firstNameInputFill() {
-        await this.firstNameInput.setValue("Micaela");
-    };
-
-    async lastNameInputFill() {
-        await this.lastNameInput.setValue("Rossi");
-    };
-
-    async postalCodeInputFill() {
-        await this.postalCodeInput.setValue("2000");
-    };
-
     async cancelBtnClick() {
         await this.cancelBtn.click();
     };
@@ -56,10 +44,10 @@ class checkout {
     };
 
     async fillForm() {
-        await this.firstNameInputFill();
-        await this.lastNameInputFill();
-        await this.postalCodeInputFill();
+        await this.firstNameInput.setValue("Micaela");
+        await this.lastNameInput.setValue("Rossi");
+        await this.postalCodeInput.setValue("2000");
     }
 }
 
-export default new checkout();
+export default new Checkout();

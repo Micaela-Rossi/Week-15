@@ -1,4 +1,4 @@
-class login {
+class Login {
     get userInput() {
         return $("#user-name");
     };
@@ -35,5 +35,5 @@ class login {
     };
 }
 
-export default new login();
+export default new Login();
 

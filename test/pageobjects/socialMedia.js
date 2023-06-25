@@ -1,4 +1,4 @@
-class socialMedia {
+class SocialMedia {
 
     get twitterBtn() {
         return $("#page_wrapper > footer > ul > li.social_twitter > a");
@@ -25,4 +25,4 @@ class socialMedia {
     };
 }
 
-export default new socialMedia();
+export default new SocialMedia();

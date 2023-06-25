@@ -1,4 +1,4 @@
-class cart {
+class Cart {
     get continueShoppingBtn() {
         return $("#continue-shopping");
     };
@@ -20,4 +20,4 @@ class cart {
     };
 }
 
-export default new cart();
+export default new Cart();

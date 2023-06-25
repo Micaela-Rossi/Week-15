@@ -1,4 +1,4 @@
-class logout {
+class Logout {
     get burguerMenuBtn() {
         return $("#react-burger-menu-btn");
     };
@@ -29,4 +29,4 @@ class logout {
     };
 }
 
-export default new logout();
+export default new Logout();
