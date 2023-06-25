@@ -27,15 +27,10 @@ exports.config = {
     ],
     // Patterns to exclude.
     exclude: [
-        './test/specs/functionsReusables.js',
-        //'./test/specs/logInLogOute2eGlitch.js',
-        //'./test/specs/logInLogOute2eLocked.js',
-        //'./test/specs/logInLogOute2eProblem.js',
-        //'./test/specs/logInLogOute2eStandard.js',
-        //'./test/specs/purchaseStandardUsere2e.js',
-        //'./test/specs/purchaseProblemUsere2e.js',
-        //'./test/specs/purchaseGlitchUsere2e.js'
-        //'./test/specs/goToSocialMediaStandardUsere2e.js
+        './test/specs/glitchUsere2e.js',
+        './test/specs/lockedUsere2e.js',
+        './test/specs/problemUsere2e.js',
+        //'./test/specs/standardUsere2e.js',
     ],
     //
     // ============

@@ -1,16 +1,16 @@
-import { logoutProcess, correctImages } from "./functionsReusables";
+import logout from "../pageobjects/logout";
 import { inventory } from "../pageobjects/inventory";
 import cart from "../pageobjects/cart";
 import checkout from "../pageobjects/checkout";
 import login from "../pageobjects/login";
 const credential = require("../../credentials");
 
-describe ("Complete flow for a purchase for standard user.", () => {
+describe ("Complete flow for a purchase for glitched user.", () => {
     beforeAll("Open Browser", async () => {
         browser.setWindowSize(1440, 1024);
         browser.url("https://www.saucedemo.com/")
 
-        const { username, password } = credential.standardUser;
+        const { username, password } = credential.glitchedUser;
         await login.loginProcess(username, password);
     });
 
@@ -50,11 +50,11 @@ describe ("Complete flow for a purchase for standard user.", () => {
     });
 
     it("remove an item and go back to add the item again.", async () => {
-        await inventory.removeCartOnesieClick();
+        await inventory.removeCartBikeLightClick();
         await cart.continueShoppingBtnClick();
 
         await expect(browser).toHaveUrlContaining("inventory");
-        await inventory.addCartOnesieClick();
+        await inventory.addCartBikeLightClick();
         await inventory.shoppingCartClick();
         await expect(browser).toHaveUrlContaining("cart");
     });
@@ -74,7 +74,7 @@ describe ("Complete flow for a purchase for standard user.", () => {
     });
 
     it("Log out", async () => {
-        await logoutProcess();
+        await logout.logoutProcess();
     });
 })
 

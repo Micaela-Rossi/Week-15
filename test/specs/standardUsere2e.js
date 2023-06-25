@@ -1,19 +1,53 @@
-import { logoutProcess } from "./functionsReusables";
-import login from "../pageobjects/login";
+import { inventory } from "../pageobjects/inventory";
+import cart from "../pageobjects/cart";
 import socialMedia from "../pageobjects/socialMedia";
+import checkout from "../pageobjects/checkout";
+import login from "../pageobjects/login";
+import logout from "../pageobjects/logout";
 const credential = require("../../credentials");
 
-describe ("Navigation to social media.", () => {
+describe ("Complete flow for standard user, log in, add items to cart, delete items,complete the purchase, navigation in the page, logout .", () => {
     beforeAll("Open Browser", async () => {
         browser.setWindowSize(1440, 1024);
         browser.url("https://www.saucedemo.com/")
 
         const { username, password } = credential.standardUser;
         await login.loginProcess(username, password);
-
     });
 
-    it("Go to the twitter page.", async () => {
+    it("add items to cart.", async () => {
+        let cartCount = 1;
+
+        await inventory.addCartBackpackClick();
+        await expect(cart.spanCartNumber).toHaveText(cartCount.toString());
+
+        cartCount++;
+
+        await inventory.addCartBikeLightClick();
+        await expect(cart.spanCartNumber).toHaveText(cartCount.toString());
+
+        cartCount++;
+
+        await inventory.addCartTshirtRedClick();
+        await expect(cart.spanCartNumber).toHaveText(cartCount.toString());
+
+        cartCount++;
+
+        await inventory.addCartJacketClick();
+        await expect(cart.spanCartNumber).toHaveText(cartCount.toString());
+
+        cartCount++;
+
+        await inventory.addCartOnesieClick();
+        await expect(cart.spanCartNumber).toHaveText(cartCount.toString());
+
+        cartCount++;
+
+        await inventory.addCartTshirtClick();
+        await expect(cart.spanCartNumber).toHaveText(cartCount.toString());
+    });
+
+    it("Click to open twitter page.", async () => {
         const sauceDemoWindow = await browser.getWindowHandle();
         const windowsBeforeClick = await browser.getWindowHandles();
         expect(socialMedia.twitterBtn).toBeDisplayed();
@@ -33,7 +67,7 @@ describe ("Navigation to social media.", () => {
         await browser.switchToWindow(sauceDemoWindow);
     });
 
-    it("Go to the facebook page.", async () => {
+    it("Click to open facebook page.", async () => {
         const sauceDemoWindow = await browser.getWindowHandle();
         const windowsBeforeClick = await browser.getWindowHandles();
         expect(socialMedia.facebookBtn).toBeDisplayed();
@@ -53,7 +87,7 @@ describe ("Navigation to social media.", () => {
         await browser.switchToWindow(sauceDemoWindow);
     });
 
-    it("Go to the linkedin page.", async () => {
+    it("Click to open linkedin page.", async () => {
         const sauceDemoWindow = await browser.getWindowHandle();
         const windowsBeforeClick = await browser.getWindowHandles();
         expect(socialMedia.linkedinBtn).toBeDisplayed();
@@ -73,7 +107,35 @@ describe ("Navigation to social media.", () => {
         await browser.switchToWindow(sauceDemoWindow);
     });
 
-    afterAll("Log out process.", async () => {
-        await logoutProcess();
+    it("Go to cart, remove an item and go back to add the item again.", async () => {
+        await inventory.shoppingCartClick();
+        await expect(browser).toHaveUrlContaining("cart");
+
+        await inventory.removeCartOnesieClick();
+        await cart.continueShoppingBtnClick();
+
+        await expect(browser).toHaveUrlContaining("inventory");
+        await inventory.addCartOnesieClick();
+        await inventory.shoppingCartClick();
+        await expect(browser).toHaveUrlContaining("cart");
+    });
+
+    it("Finish the purchase and back to the list of items", async () => {
+        await cart.checkoutBtnClick();
+        await expect(browser).toHaveUrlContaining("step-one");
+
+        await checkout.fillForm();
+        await checkout.continueBtnClick();
+        await expect(browser).toHaveUrlContaining("step-two");
+
+        await checkout.finishBtnClick();
+        await expect(browser).toHaveUrlContaining("complete");
+        await checkout.backHomeBtnClick();
+        await expect(browser).toHaveUrlContaining("inventory");
+    });
+
+    it("Log out", async () => {
+        await logout.logoutProcess();
     });
 })
+
